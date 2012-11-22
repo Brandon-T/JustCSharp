@@ -116,6 +116,34 @@ namespace JustCSharp
                 CurrentPage.Visible = true;
             }
         }
+
+        public void RemovePage(int PageNumber)
+        {
+            if ((PageNumber >= 0) && (PageNumber < Controls.Count))
+            {
+                int Index = Controls.IndexOf(CurrentPage);
+                if (PageNumber != Index)
+                {
+                    Controls.RemoveAt(PageNumber);
+                }
+                else
+                {
+                    Controls.RemoveAt(PageNumber);
+                    if (Index == 0)
+                    {
+                        CurrentPage = (CardPanelPage)Controls[0];
+                    }
+                    else if (Index == (Controls.Count - 1))
+                    {
+                        CurrentPage = (CardPanelPage)Controls[Controls.Count - 1];
+                    }
+                    else
+                    {
+                        CurrentPage = (CardPanelPage)Controls[PageNumber - 1];
+                    }
+                }
+            }
+        }
         #endregion
     }
 
