@@ -122,13 +122,11 @@ namespace JustCSharp
             if ((PageNumber >= 0) && (PageNumber < Controls.Count))
             {
                 int Index = Controls.IndexOf(CurrentPage);
-                if (PageNumber != Index)
+                Controls.RemoveAt(PageNumber);
+                CurrentPage = null;
+
+                if (Controls.Count > 0)
                 {
-                    Controls.RemoveAt(PageNumber);
-                }
-                else
-                {
-                    Controls.RemoveAt(PageNumber);
                     if (Index == 0)
                     {
                         CurrentPage = (CardPanelPage)Controls[0];
@@ -141,6 +139,16 @@ namespace JustCSharp
                     {
                         CurrentPage = (CardPanelPage)Controls[PageNumber - 1];
                     }
+
+                    CurrentPage.Visible = true;
+                }
+
+                if (CurrentPage == null)
+                {
+                    CurrentPage = new CardPanelPage();
+                    CurrentPage.Name = "CardPanelPage1";
+                    Controls.Add(CurrentPage);
+                    CurrentPage.Visible = true;
                 }
             }
         }
