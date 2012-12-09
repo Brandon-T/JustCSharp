@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 
 namespace JustCSharp
 {
-
     public class Database
     {
         SqlConnection Connection;
